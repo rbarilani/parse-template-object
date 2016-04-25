@@ -1,6 +1,6 @@
 {
-  "name": "template-object-parser",
-  "description": "Parse template objects (like grunt config)",
+  "name": "parse-template-object",
+  "description": "Parse objects that use templates as values (like grunt config)",
   "version": "0.1.0",
   "authors": [
       "Grunt Development Team (http://gruntjs.com/development-team)",
@@ -13,7 +13,7 @@
   "scripts": {
     "test": "grunt test"
   },
-  "main": "lib/template-object-parser.js",
+  "main": "lib/parse.js",
   "keywords": [
     "build",
     "lodash",

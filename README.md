@@ -1,24 +1,26 @@
-# Template Object Parser
+# Parse Template Object
 
-Parse template objects (like grunt config)
+Parse objects that use templates as values (like grunt config).
+It's actually based/derived on [grunt config mechanism](https://github.com/gruntjs/grunt).
 
 ### Install
 
 ```
-npm install template-object-parser
+npm install parse-template-object --save
 ```
 
 ### Usage
 
 ```javascript
 
-var parse = require('template-object-parser');
+var parse = require('parse-template-object');
 
 var object = {
     meta: { version: 1.1.0 },
     package: {
-        name: '<%= meta.version %> '
-    }   
+        name: 'awesome-<%= meta.version %>'
+    },
+    arr: ['foo', '<%= package.name %>']
 };
 
 var parsed = parse(object);
@@ -31,7 +33,8 @@ console.log(parsed);
 //     meta: { version: '1.1.0' },
 //     package: {
 //         name: '1.1.0'
-//     }   
+//     }
+//     arr: ['foo', 'awesome-1.1.0']
 // }
 //
 ```

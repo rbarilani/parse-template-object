@@ -1,6 +1,6 @@
 'use strict';
 
-var parser = require('../lib/template-object-parser');
+var parser = require('../lib/parser');
 
 
 exports.config = {
