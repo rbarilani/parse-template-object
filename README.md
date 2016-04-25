@@ -3,6 +3,8 @@
 Parse objects that use templates as values (like grunt config).
 It's actually based/derived on [grunt config mechanism](https://github.com/gruntjs/grunt).
 
+[![Build Status](https://travis-ci.org/rbarilani/parse-template-object.svg?branch=master)](https://travis-ci.org/rbarilani/parse-template-object)
+
 ### Install
 
 ```
