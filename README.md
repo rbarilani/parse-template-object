@@ -16,7 +16,7 @@ npm install parse-template-object --save
 var parse = require('parse-template-object');
 
 var object = {
-    meta: { version: 1.1.0 },
+    meta: { version: '1.1.0' },
     package: {
         name: 'awesome-<%= meta.version %>'
     },
