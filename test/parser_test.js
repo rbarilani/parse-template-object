@@ -19,7 +19,16 @@ exports.config = {
             bar: 'bar',
             arr: ['foo', '<%= obj.foo2 %>'],
             arr2: ['<%= arr %>', '<%= obj.Arr %>'],
-            buffer: new Buffer('test')
+            buffer: new Buffer('test'),
+            foo3: '<%= IMPORTED %>',
+            foo4: '<%= IMPORTED_2.foo %>'
+        }, {
+          imports: {
+            IMPORTED: 'bar',
+            IMPORTED_2: {
+              foo: 'foo'
+            }
+          }
         });
         done();
     },
@@ -50,7 +59,7 @@ exports.config = {
         test.done();
     },
     'parser.process': function(test) {
-        test.expect(7);
+        test.expect(9);
         test.equal(parser.process('<%= meta.foo %>'), 'bar', 'Should process templates.');
         test.equal(parser.process('<%= foo %>'), 'bar', 'Should process templates recursively.');
         test.equal(parser.process('<%= obj.foo %>'), 'bar', 'Should process deeply nested templates recursively.');
@@ -59,10 +68,12 @@ exports.config = {
         var buf = parser.process('<%= buffer %>');
         test.ok(Buffer.isBuffer(buf), 'Should retrieve Buffer instances as Buffer.');
         test.deepEqual(buf, new Buffer('test'), 'Should return buffers as-is.');
+        test.deepEqual(parser.process('<%= IMPORTED %>'), 'bar', 'Should expand <%= IMPORTED %> value.');
+        test.deepEqual(parser.process('<%= IMPORTED_2.foo %>'), 'foo', 'Should expand <%= IMPORTED_2.foo %> value.');
         test.done();
     },
     'parser.get': function(test) {
-        test.expect(10);
+        test.expect(12);
         test.equal(parser.get('foo'), 'bar', 'Should process templates.');
         test.equal(parser.get('foo2'), 'bar', 'Should process templates recursively.');
         test.equal(parser.get('obj.foo2'), 'bar', 'Should process deeply nested templates recursively.');
@@ -74,6 +85,8 @@ exports.config = {
         var buf = parser.get('buffer');
         test.ok(Buffer.isBuffer(buf), 'Should retrieve Buffer instances as Buffer.');
         test.deepEqual(buf, new Buffer('test'), 'Should return buffers as-is.');
+        test.deepEqual(parser.get('foo3'), 'bar', 'Should expand <%= IMPORTED %> value.');
+        test.deepEqual(parser.get('foo4'), 'foo', 'Should expand <%= IMPORTED_2.foo %> value.');
         test.done();
     },
     'parser.set': function(test) {
