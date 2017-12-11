@@ -42,7 +42,7 @@ console.log(parse(object));
 // ------------------------------------
 
 //
-// Add extra context with "imports" options 
+// Add extra context with "imports" options
 //
 var object2 = {
     package: {
@@ -69,3 +69,11 @@ console.log(parsed2);
 // }
 // ------------------------------------
 ```
+
+### LICENSE
+
+Copyright 2017 Ruben Barilani
+
+Project is released under the MIT license. See LICENSE for details.
+
+Unless required by applicable law or agreed to in writing, software distributed under the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the specific language governing permissions and limitations under the License
