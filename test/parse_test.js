@@ -8,7 +8,7 @@ exports.config = {
         done();
     },
     'parse': function (test) {
-        test.expect(4);
+        test.expect(5);
         var parsed = parse({
             meta: require('./fixtures/test.json'),
             foo: '<%= meta.foo %>',
@@ -22,13 +22,21 @@ exports.config = {
             bar: 'bar',
             arr: ['foo', '<%= obj.foo2 %>'],
             arr2: ['<%= arr %>', '<%= obj.Arr %>'],
-            buffer: new Buffer('test')
+            buffer: new Buffer('test'),
+            foo4: '<%= IMPORTED_2.foo %>'
+        }, {
+          imports: {
+            IMPORTED_2: {
+              foo: 'foo'
+            }
+          }
         });
 
         test.equal(parsed.foo, 'bar', 'Should retrieve processed data.');
         test.equal(parsed.obj.foo2, 'bar', 'Should retrieve processed data.');
         test.deepEqual(parsed.arr, ['foo', 'bar'], 'Should process templates in arrays.');
         test.deepEqual(parsed.arr2, [[ 'foo', 'bar' ], [ 'foo', 'bar' ]], 'Should process templates in  nested arrays.');
+        test.deepEqual(parsed.foo4, 'foo', 'Should expand <%= IMPORTED_2.foo %> value.');
         test.done();
     }
 };

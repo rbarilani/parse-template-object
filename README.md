@@ -15,6 +15,9 @@ npm install @rbarilani/parse-template-object --save
 
 ```javascript
 
+//
+// Basic usage
+//
 var parse = require('@rbarilani/parse-template-object');
 
 var object = {
@@ -25,18 +28,44 @@ var object = {
     arr: ['foo', '<%= package.name %>']
 };
 
-var parsed = parse(object);
-
-console.log(parsed);
+console.log(parse(object));
 
 // OUT:
 //
 // {
 //     meta: { version: '1.1.0' },
 //     package: {
-//         name: '1.1.0'
+//         name: 'awesome-1.1.0'
 //     }
 //     arr: ['foo', 'awesome-1.1.0']
 // }
+// ------------------------------------
+
 //
+// Add extra context with "imports" options 
+//
+var object2 = {
+    package: {
+        name: 'awesome-<%= meta.version %>'
+    },
+    arr: ['foo', '<%= package.name %>']
+};
+
+var parsed2 = parse(object2, {
+  imports: {
+    meta: { version: '1.1.0'}
+  }
+});
+
+console.log(parsed2);
+
+// OUT:
+//
+// {
+//     package: {
+//         name: 'awesome-1.1.0'
+//     }
+//     arr: ['foo', 'awesome-1.1.0']
+// }
+// ------------------------------------
 ```
