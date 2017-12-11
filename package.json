@@ -1,7 +1,8 @@
 {
-  "name": "parse-template-object",
+  "name": "@rbarilani/parse-template-object",
   "description": "Parse objects that use templates as values (like grunt config)",
   "version": "0.1.0",
+  "author": "Ruben Barilani <ruben.barilani.dev@gmail.com>",
   "authors": [
       "Grunt Development Team (http://gruntjs.com/development-team)",
       "Ruben Barilani <ruben.barilani.dev@gmail.com>"

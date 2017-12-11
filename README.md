@@ -8,14 +8,14 @@ It's actually based/derived on [grunt config mechanism](https://github.com/grunt
 ### Install
 
 ```
-npm install parse-template-object --save
+npm install @rbarilani/parse-template-object --save
 ```
 
 ### Usage
 
 ```javascript
 
-var parse = require('parse-template-object');
+var parse = require('@rbarilani/parse-template-object');
 
 var object = {
     meta: { version: '1.1.0' },
@@ -40,4 +40,3 @@ console.log(parsed);
 // }
 //
 ```
-
